@@ -1,5 +1,6 @@
 import { Component, useState } from "react";
 import './Calculator.css'
+import image1 from "../../../assests/image/png/squareRoot.png"
 
 const Calculator = () => {
     const [screen, setScreen] = useState("");
@@ -47,9 +48,37 @@ const Calculator = () => {
             console.log(result, number);
             finalResult = Number(result) / Number(number);
         }
-        else if (sign == "")
-            setScreen(finalResult);
-    }
+        else if (sign == "sin") {
+            console.log(result, number);
+            finalResult = Number(0) +  Number(number);
+            finalResult = Math.sin(parseFloat(finalResult))
+        }
+        else if (sign == "tan") {
+            console.log(result, number);
+            finalResult = Number(0) +  Number(number);
+            finalResult = Math.tan(parseFloat(finalResult))
+        }
+        else if (sign == "cos") {
+            console.log(result, number);
+            finalResult = Number(0) +  Number(number);
+            finalResult = Math.cos(parseFloat(finalResult))
+        }
+        else if (sign == "log") {
+            console.log(result, number);
+            finalResult = Number(0) +  Number(number);
+            finalResult = Math.log(parseFloat(finalResult))
+        }
+        else if (sign == "(") {
+            var newNum = ""
+            console.log(result, number);
+            for(let i = 0; i<number.length;i++){
+                if(number.charAt(i)!=")")
+             newNum += number.charAt(i)
+            }
+            finalResult = Number(result) *  Number(newNum);
+        }
+        setScreen(finalResult);
+        }
 
     const reset = () => {
         setScreen("");
@@ -101,16 +130,16 @@ const Calculator = () => {
                     {showButtons && (
                         <div>
                         <div className="sixthContainer">
-                            {<button>sin</button>}
-                            {<button>cos</button>}
-                            {<button>tan</button>}
-                            {<button>log</button>}
+                            {<button value="sin" onClick={(e) => handleArithmetics(e)}>sin</button>}
+                            {<button value="cos" onClick={(e) => handleArithmetics(e)}>cos</button>}
+                            {<button value="tan" onClick={(e) => handleArithmetics(e)}>tan</button>}
+                            {<button value="log" onClick={(e) => handleArithmetics(e)}>log</button>}
                         </div>
                         <div className="seventhContainer">
-                            {<button>(</button>}
-                            {<button>)</button>}
-                            {<button></button>}
-                            {<button></button>}
+                            {<button value="(" onClick={(e) => handleArithmetics(e)}>(</button>}
+                            {<button value=")"onClick={(e) => submitNumericValue(e)} >)</button>}
+                            {<button value="" onClick={(e) => handleArithmetics(e)} id= "squareRoot"><img src={image1}></img></button>}
+                            {<button value="sin" onClick={(e) => handleArithmetics(e)}></button>}
                         </div>
                         </div>
                         
